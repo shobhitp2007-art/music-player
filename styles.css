@@ -2726,3 +2726,89 @@ input[type="range"] {
     }
 
 }
+
+/* =========================================
+   MOBILE RESPONSIVE FIX
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hide desktop sidebar */
+    .sidebar,
+    .side-nav,
+    .navigation-sidebar {
+        display: none !important;
+    }
+
+    /* Main content takes full phone width */
+    .main-content,
+    main,
+    .app-main,
+    .content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box;
+    }
+
+    /* Remove desktop grid columns */
+    .app,
+    .app-container,
+    .layout,
+    .main-layout {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Hero/card sections */
+    .hero,
+    .hero-section,
+    .welcome-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Search bar */
+    input,
+    .search-bar,
+    .search-container {
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Prevent large desktop elements from overflowing */
+    img,
+    video,
+    iframe {
+        max-width: 100%;
+    }
+
+    /* Bottom music player */
+    .player,
+    .music-player,
+    .bottom-player {
+        width: 100% !important;
+        max-width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        box-sizing: border-box;
+    }
+}
