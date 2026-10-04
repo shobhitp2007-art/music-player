@@ -1317,6 +1317,691 @@ function findSongById(id) {
 
 }
 
+/* =========================================================
+   PROFESSIONAL COVER SYSTEM
+   ========================================================= */
+
+/*
+   These are the songs whose original covers
+   will be replaced with professional-looking
+   MusicFlow covers.
+*/
+
+const PROFESSIONAL_COVER_THEMES = {
+
+    "nashe se chadh gyi": [
+        "#111827",
+        "#7c3aed",
+        "#ec4899"
+    ],
+
+    "chaleya": [
+        "#0f172a",
+        "#2563eb",
+        "#8b5cf6"
+    ],
+
+    "pardesiya": [
+        "#111827",
+        "#0f766e",
+        "#14b8a6"
+    ],
+
+    "crew": [
+        "#18181b",
+        "#be123c",
+        "#f97316"
+    ],
+
+    "soni soni": [
+        "#172554",
+        "#1d4ed8",
+        "#06b6d4"
+    ],
+
+    "pop": [
+        "#111827",
+        "#c026d3",
+        "#7c3aed"
+    ],
+
+    "janiye": [
+        "#18181b",
+        "#db2777",
+        "#f59e0b"
+    ],
+
+    "illahi": [
+        "#172554",
+        "#0891b2",
+        "#f59e0b"
+    ],
+
+    "closure": [
+        "#111827",
+        "#334155",
+        "#8b5cf6"
+    ]
+
+};
+
+
+/* =========================================================
+   CREATE PROFESSIONAL SVG COVER
+   ========================================================= */
+
+function professionalCoverSVG(
+    title,
+    artist,
+    theme
+) {
+
+    const [c1, c2, c3] = theme;
+
+
+    /*
+       Escape text so that it can safely
+       be placed inside SVG.
+    */
+
+    const safeTitle =
+        String(title || "Music")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+
+
+    const safeArtist =
+        String(artist || "Artist")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+
+
+    /*
+       Keep very long titles from
+       overflowing the cover.
+    */
+
+    const shortTitle =
+        safeTitle.length > 23
+            ? safeTitle.slice(0, 22) + "…"
+            : safeTitle;
+
+
+    const svg = `
+
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="800"
+            height="800"
+            viewBox="0 0 800 800"
+        >
+
+            <defs>
+
+                <linearGradient
+                    id="bg"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                >
+
+                    <stop
+                        offset="0%"
+                        stop-color="${c1}"
+                    />
+
+                    <stop
+                        offset="52%"
+                        stop-color="${c2}"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="${c3}"
+                    />
+
+                </linearGradient>
+
+
+                <radialGradient
+                    id="glow1"
+                    cx="75%"
+                    cy="18%"
+                    r="55%"
+                >
+
+                    <stop
+                        offset="0%"
+                        stop-color="#ffffff"
+                        stop-opacity=".22"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="#ffffff"
+                        stop-opacity="0"
+                    />
+
+                </radialGradient>
+
+
+                <radialGradient
+                    id="glow2"
+                    cx="20%"
+                    cy="80%"
+                    r="48%"
+                >
+
+                    <stop
+                        offset="0%"
+                        stop-color="#ffffff"
+                        stop-opacity=".14"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="#ffffff"
+                        stop-opacity="0"
+                    />
+
+                </radialGradient>
+
+            </defs>
+
+
+            <!-- Background -->
+
+            <rect
+                width="800"
+                height="800"
+                fill="url(#bg)"
+            />
+
+
+            <!-- Soft lighting -->
+
+            <rect
+                width="800"
+                height="800"
+                fill="url(#glow1)"
+            />
+
+
+            <rect
+                width="800"
+                height="800"
+                fill="url(#glow2)"
+            />
+
+
+            <!-- Decorative circles -->
+
+            <circle
+                cx="650"
+                cy="145"
+                r="120"
+                fill="none"
+                stroke="#ffffff"
+                stroke-opacity=".16"
+                stroke-width="2"
+            />
+
+
+            <circle
+                cx="650"
+                cy="145"
+                r="88"
+                fill="none"
+                stroke="#ffffff"
+                stroke-opacity=".11"
+                stroke-width="2"
+            />
+
+
+            <circle
+                cx="150"
+                cy="650"
+                r="150"
+                fill="none"
+                stroke="#ffffff"
+                stroke-opacity=".10"
+                stroke-width="2"
+            />
+
+
+            <!-- Brand -->
+
+            <text
+                x="64"
+                y="94"
+                font-family="Arial, Helvetica, sans-serif"
+                font-size="25"
+                font-weight="700"
+                letter-spacing="7"
+                fill="#ffffff"
+                fill-opacity=".82"
+            >
+                MUSICFLOW
+            </text>
+
+
+            <!-- Song title -->
+
+            <text
+                x="64"
+                y="525"
+                font-family="Arial, Helvetica, sans-serif"
+                font-size="61"
+                font-weight="800"
+                fill="#ffffff"
+            >
+                ${shortTitle}
+            </text>
+
+
+            <!-- Artist -->
+
+            <text
+                x="64"
+                y="575"
+                font-family="Arial, Helvetica, sans-serif"
+                font-size="24"
+                font-weight="500"
+                fill="#ffffff"
+                fill-opacity=".76"
+            >
+                ${safeArtist}
+            </text>
+
+
+            <!-- Accent line -->
+
+            <rect
+                x="64"
+                y="628"
+                width="120"
+                height="5"
+                rx="3"
+                fill="#ffffff"
+                fill-opacity=".75"
+            />
+
+
+            <!-- Footer -->
+
+            <text
+                x="64"
+                y="705"
+                font-family="Arial, Helvetica, sans-serif"
+                font-size="18"
+                font-weight="600"
+                letter-spacing="4"
+                fill="#ffffff"
+                fill-opacity=".55"
+            >
+                SMART MUSIC PLAYER
+            </text>
+
+        </svg>
+
+    `;
+
+
+    return (
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(svg)
+    );
+
+}
+
+
+/* =========================================================
+   GET PROFESSIONAL COVER
+   ========================================================= */
+
+/* =========================================================
+   GET PROFESSIONAL COVER
+   ========================================================= */
+
+/* =========================================================
+   GET PROFESSIONAL COVER
+   ========================================================= */
+
+function getProfessionalCover(
+    title,
+    artist = "",
+    album = ""
+) {
+
+    const cleanTitle =
+        normalize(title)
+            .replace(/[^a-z0-9]+/g, " ")
+            .trim();
+
+    const cleanArtist =
+        normalize(artist)
+            .replace(/[^a-z0-9]+/g, " ")
+            .trim();
+
+    const cleanAlbum =
+        normalize(album)
+            .replace(/[^a-z0-9]+/g, " ")
+            .trim();
+
+
+    /*
+       Combine title, artist and album.
+
+       This makes the matching much more reliable
+       when iTunes adds extra text.
+    */
+
+    const combined =
+        `${cleanTitle} ${cleanArtist} ${cleanAlbum}`;
+
+
+    let theme = null;
+
+
+    /* =====================================================
+       NASHE SE CHADH GYI
+       ===================================================== */
+
+    if (
+        combined.includes("nashe se chadh gyi") ||
+        combined.includes("nashe se chadh gayi") ||
+        combined.includes("nashe si chadh gayi")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "nashe se chadh gyi"
+            ];
+
+    }
+
+
+    /* =====================================================
+       CHALEYA
+       ===================================================== */
+
+    else if (
+        combined.includes("chaleya")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "chaleya"
+            ];
+
+    }
+
+
+    /* =====================================================
+       PARDESIYA
+       ===================================================== */
+
+    else if (
+        combined.includes("pardesiya")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "pardesiya"
+            ];
+
+    }
+
+
+    /* =====================================================
+       CREW
+       ===================================================== */
+
+    else if (
+        cleanTitle === "crew" ||
+        cleanTitle.includes(" crew ") ||
+        cleanTitle.startsWith("crew ") ||
+        cleanTitle.endsWith(" crew") ||
+        cleanAlbum === "crew" ||
+        cleanAlbum.includes("crew")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "crew"
+            ];
+
+    }
+
+
+    /* =====================================================
+       SONI SONI
+       ===================================================== */
+
+    else if (
+        combined.includes("soni soni")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "soni soni"
+            ];
+
+    }
+
+
+    /* =====================================================
+       POP
+       ===================================================== */
+
+    else if (
+        cleanTitle === "pop" ||
+        cleanTitle.startsWith("pop ") ||
+        cleanTitle.endsWith(" pop") ||
+        cleanTitle.includes(" pop ") ||
+        cleanAlbum === "pop" ||
+        cleanAlbum.includes("pop")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "pop"
+            ];
+
+    }
+
+
+    /* =====================================================
+       JANIYE
+       ===================================================== */
+
+    else if (
+        combined.includes("janiye")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "janiye"
+            ];
+
+    }
+
+
+    /* =====================================================
+       ILLAHI
+       ===================================================== */
+
+    else if (
+        combined.includes("illahi")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "illahi"
+            ];
+
+    }
+
+        /* =====================================================
+       POI SONNAL
+       ===================================================== */
+
+    else if (
+        cleanTitle.includes("poi sonnal") ||
+        cleanAlbum.includes("run")
+    ) {
+
+        theme = [
+            "#0f172a",
+            "#7c2d12",
+            "#f97316"
+        ];
+
+    }
+
+        /* =====================================================
+       ENNA VILAI
+       ===================================================== */
+
+    else if (
+        cleanTitle.includes("enna vilai")
+    ) {
+
+        theme = [
+            "#172554",
+            "#9333ea",
+            "#ec4899"
+        ];
+
+    }
+
+    /* =====================================================
+       CLOSER
+       ===================================================== */
+
+    else if (
+        cleanTitle === "closer" ||
+        cleanTitle.startsWith("closer ") ||
+        cleanTitle.includes(" closer ") ||
+        cleanTitle.endsWith(" closer") ||
+        cleanAlbum === "closer" ||
+        cleanAlbum.includes("closer")
+    ) {
+
+        theme = [
+            "#111827",
+            "#334155",
+            "#8b5cf6"
+        ];
+
+    }
+
+
+    /* =====================================================
+       CLOSURE
+       ===================================================== */
+
+    else if (
+        cleanTitle === "closure" ||
+        cleanTitle.startsWith("closure ") ||
+        cleanTitle.includes(" closure ") ||
+        cleanAlbum === "closure" ||
+        cleanAlbum.includes("closure")
+    ) {
+
+        theme =
+            PROFESSIONAL_COVER_THEMES[
+                "closure"
+            ];
+
+    }
+
+
+    /* =====================================================
+       NO MATCH
+       ===================================================== */
+
+    if (!theme) {
+
+        return null;
+
+    }
+
+
+    /* =====================================================
+       GENERATE PROFESSIONAL COVER
+       ===================================================== */
+
+    return professionalCoverSVG(
+        title,
+        artist,
+        theme
+    );
+
+    function getArtworkForSong(item) {
+
+    const title =
+        normalize(item.trackName)
+            .replace(/[^a-z0-9]+/g, " ")
+            .trim();
+
+
+    /* POI SONNAL */
+
+    if (
+        title.includes("poi") &&
+        title.includes("sonnal")
+    ) {
+
+        return professionalCoverSVG(
+            item.trackName,
+            item.artistName || "Hariharan & Sadhana Sargam",
+            [
+                "#0f172a",
+                "#7c2d12",
+                "#f97316"
+            ]
+        );
+
+    }
+
+
+    /* ENNA VILAI */
+
+    if (
+        title.includes("enna") &&
+        title.includes("vilai")
+    ) {
+
+        return professionalCoverSVG(
+            item.trackName,
+            item.artistName || "Unni Menon",
+            [
+                "#172554",
+                "#9333ea",
+                "#ec4899"
+            ]
+        );
+
+    }
+
+
+    /* ALL OTHER PROFESSIONAL COVERS */
+
+    return getProfessionalCover(
+        item.trackName,
+        item.artistName,
+        item.collectionName
+    );
+
+}
+
+}
 
 /* =========================================================
    NORMALIZE API RESPONSE
@@ -1350,29 +2035,60 @@ function normalizeApiResults(data) {
                 id:
                     `api-${item.trackId}`,
 
+
                 title:
                     item.trackName,
+
 
                 artist:
                     item.artistName ||
                     "Unknown Artist",
 
+
                 album:
                     item.collectionName ||
                     "Single",
 
+
+                /*
+                   FIRST:
+                   Use our professional cover
+                   when the song is one of
+                   the selected songs.
+
+                   OTHERWISE:
+                   Use the original iTunes cover.
+                */
+
                 artwork:
-                    item.artworkUrl100
-                        ?
+
+                    getProfessionalCover(
+    item.trackName,
+    item.artistName,
+    item.collectionName
+)
+
+                    ||
+
+                    (
+                        item.artworkUrl100
+
+                            ?
+
                         item.artworkUrl100.replace(
                             "100x100",
                             "600x600"
                         )
-                        :
-                        "",
+
+                            :
+
+                        ""
+                    ),
+
 
                 previewUrl:
                     item.previewUrl,
+
 
                 color:
                     "#8b5cf6"
@@ -1381,6 +2097,8 @@ function normalizeApiResults(data) {
         );
 
 }
+
+    
 
 
 /* =========================================================
@@ -1936,8 +2654,10 @@ function displaySongs(
                                     song.title
                                 )}"
                                 onerror="
-                                    this.style.display='none'
-                                "
+    this.onerror=null;
+    this.parentElement.innerHTML =
+    '<div class=&quot;cover-letter&quot; style=&quot;background:linear-gradient(135deg,#172554,#9333ea,#ec4899)&quot;>♪</div>';
+"
                             >
 
                             `
