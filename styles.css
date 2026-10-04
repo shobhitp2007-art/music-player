@@ -2524,6 +2524,7 @@ input[type="range"] {
 
     .mobile-nav {
         display: flex;
+        flex-direction: row;
 
         width: 100%;
         padding: 8px;
@@ -2587,8 +2588,36 @@ input[type="range"] {
     }
 
     .hero {
-        padding: 26px 20px;
-    }
+    padding: 28px 20px;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 25px;
+}
+
+.hero-content {
+    width: 100%;
+}
+
+.hero h1 {
+    font-size: 32px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+}
+
+.hero p {
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.vinyl {
+    width: 135px;
+    height: 135px;
+    min-width: 135px;
+
+    align-self: center;
+}
 
     .hero h1 {
         font-size: 34px;
@@ -2608,18 +2637,24 @@ input[type="range"] {
     }
 
     .player {
-        height: 155px;
+    height: 125px;
 
-        grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
 
-        padding: 10px 15px;
+    padding: 8px 15px;
 
-        gap: 5px;
-    }
+    gap: 3px;
+}
 
     .current-song {
-        justify-content: center;
-    }
+    justify-content: center;
+    gap: 9px;
+}
+
+.current-song img {
+    width: 42px;
+    height: 42px;
+}
 
     .volume {
         display: none;
