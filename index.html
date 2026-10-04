@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MusicFlow - Smart Music Player</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">♫</div>
+
+            <div>
+                <h2>MusicFlow</h2>
+                <p>DSA Music Player</p>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-btn active" data-page="home">
+                🏠 Home
+            </button>
+
+            <button class="nav-btn" data-page="playlist">
+                🎵 My Playlist
+            </button>
+
+            <button class="nav-btn" data-page="history">
+                🕘 History
+            </button>
+        </nav>
+
+        <div class="ds-box">
+
+            <h4>Data Structures</h4>
+
+            <p>Hash Table</p>
+            <p>Circular Doubly Linked List</p>
+            <p>Stack</p>
+
+        </div>
+
+        <div class="api-status">
+            <span id="statusDot"></span>
+            <span id="statusText">Ready</span>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="search-container">
+
+                <span class="search-icon">🔍</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search songs or artists..."
+                >
+
+                <button id="clearSearch" class="clear-search">
+                    ×
+                </button>
+
+            </div>
+
+            <button id="demoBtn" class="demo-btn">
+                Load Demo
+            </button>
+
+        </header>
+
+
+        <!-- HOME -->
+        <section id="homePage" class="page active">
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <span class="hero-tag">
+                        SMART MUSIC PLAYER
+                    </span>
+
+                    <h1>
+                        Music powered by
+                        <span>Data Structures.</span>
+                    </h1>
+
+                    <p>
+                        Search songs, create playlists, navigate using
+                        circular linked lists and track listening history
+                        using a stack.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <button id="playDemo" class="primary-btn">
+                            ▶ Play Music
+                        </button>
+
+                        <button id="architectureBtn" class="secondary-btn">
+                            View Architecture
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="vinyl">
+                    <div class="vinyl-center"></div>
+                </div>
+
+            </div>
+
+
+            <!-- SONG SECTION -->
+            <div class="section-title">
+
+                <div>
+                    <small>DISCOVER</small>
+                    <h2 id="songHeading">Featured Songs</h2>
+                </div>
+
+                <span id="songCount"></span>
+
+            </div>
+
+
+            <div id="songGrid" class="song-grid"></div>
+
+
+            <!-- DATA STRUCTURE PANEL -->
+            <div id="architecture" class="architecture hidden">
+
+                <div class="architecture-header">
+
+                    <div>
+                        <small>PROJECT LOGIC</small>
+                        <h2>Data Structure Architecture</h2>
+                    </div>
+
+                    <button id="closeArchitecture">
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div class="ds-grid">
+
+                    <div class="ds-card">
+
+                        <span>01</span>
+
+                        <h3>Hash Table</h3>
+
+                        <p>
+                            Used for fast song lookup using title,
+                            artist or song ID as the key.
+                        </p>
+
+                        <code>search(key)</code>
+
+                    </div>
+
+
+                    <div class="ds-card">
+
+                        <span>02</span>
+
+                        <h3>Circular Doubly Linked List</h3>
+
+                        <p>
+                            Stores the playlist and allows movement
+                            in both directions.
+                        </p>
+
+                        <code>next / previous → O(1)</code>
+
+                    </div>
+
+
+                    <div class="ds-card">
+
+                        <span>03</span>
+
+                        <h3>Stack</h3>
+
+                        <p>
+                            Stores recently played songs according
+                            to LIFO order.
+                        </p>
+
+                        <code>push / pop / peek</code>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PLAYLIST -->
+        <section id="playlistPage" class="page">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <small>PLAYLIST</small>
+
+                    <h1>My Playlist</h1>
+
+                    <p>
+                        Playlist implemented using a Circular
+                        Doubly Linked List.
+                    </p>
+
+                </div>
+
+                <button id="clearPlaylist" class="danger-btn">
+                    Clear Playlist
+                </button>
+
+            </div>
+
+
+            <div id="playlistList" class="list"></div>
+
+            <div id="playlistEmpty" class="empty">
+
+                <div>🎵</div>
+
+                <h3>Your playlist is empty</h3>
+
+                <p>
+                    Add songs from the Home page.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- HISTORY -->
+        <section id="historyPage" class="page">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <small>LISTENING HISTORY</small>
+
+                    <h1>Recently Played</h1>
+
+                    <p>
+                        History is implemented using a Stack.
+                    </p>
+
+                </div>
+
+                <button id="clearHistory" class="danger-btn">
+                    Clear History
+                </button>
+
+            </div>
+
+
+            <div id="historyList" class="list"></div>
+
+
+            <div id="historyEmpty" class="empty">
+
+                <div>🕘</div>
+
+                <h3>No songs played yet</h3>
+
+                <p>
+                    Play some music to build your history.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MUSIC PLAYER -->
+<footer class="player">
+
+    <div class="current-song">
+
+        <img id="playerImage" src="" alt="Album">
+
+        <div>
+
+            <h4 id="playerTitle">
+                Select a song
+            </h4>
+
+            <p id="playerArtist">
+                MusicFlow
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="controls-area">
+
+        <div class="controls">
+
+            <button id="shuffleBtn">
+                🔀
+            </button>
+
+            <button id="previousBtn">
+                ⏮
+            </button>
+
+            <button id="playPauseBtn" class="play-btn">
+                ▶
+            </button>
+
+            <button id="nextBtn">
+                ⏭
+            </button>
+
+            <button id="repeatBtn">
+                🔁
+            </button>
+
+        </div>
+
+
+        <div class="progress">
+
+            <span id="currentTime">0:00</span>
+
+            <input
+                type="range"
+                id="progressBar"
+                min="0"
+                max="100"
+                value="0"
+            >
+
+            <span id="duration">0:00</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="volume">
+
+        <span>🔊</span>
+
+        <input
+            type="range"
+            id="volumeBar"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.7"
+        >
+
+    </div>
+
+</footer>
+
+
+<audio id="audio"></audio>
+
+<div id="toast"></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
