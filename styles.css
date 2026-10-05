@@ -2656,9 +2656,10 @@ input[type="range"] {
     gap: 3px;
 }
 
-    .current-song {
-    justify-content: center;
-    gap: 9px;
+   .current-song {
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
 }
 
 .current-song img {
@@ -2699,7 +2700,8 @@ input[type="range"] {
 
 .current-song > div {
     min-width: 0;
-    width: 240px;
+    width: auto;
+    max-width: calc(100% - 52px);
     overflow: hidden;
 }
 
@@ -2763,8 +2765,9 @@ input[type="range"] {
 @media (max-width: 550px) {
 
     .current-song > div {
-        width: 190px;
-    }
+    width: auto;
+    max-width: calc(100% - 52px);
+}
 
     .current-song h4.scroll-title
     .title-track {
