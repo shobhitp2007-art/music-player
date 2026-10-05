@@ -2904,17 +2904,11 @@ function playSong(
         Update player UI.
     */
     
-        playerTitle.innerHTML = `
+       playerTitle.innerHTML = `
     <span class="title-track">
-
         <span>
             ${escapeHTML(song.title)}
         </span>
-
-        <span aria-hidden="true">
-            ${escapeHTML(song.title)}
-        </span>
-
     </span>
 `;
 
@@ -2937,6 +2931,12 @@ requestAnimationFrame(() => {
         firstTitle.scrollWidth >
         playerTitle.clientWidth
     ) {
+
+        track.innerHTML += `
+            <span aria-hidden="true">
+                ${escapeHTML(song.title)}
+            </span>
+        `;
 
         playerTitle.classList.add(
             "scroll-title"
