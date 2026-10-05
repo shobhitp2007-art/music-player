@@ -2726,9 +2726,12 @@ input[type="range"] {
     flex-shrink: 0;
 }
 
-.current-song h4.scroll-title .title-track {
-    animation:
-        titleMarquee 13s linear infinite;
+/* CENTER SHORT SONG TITLES */
+
+.current-song h4:not(.scroll-title) .title-track {
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 @keyframes titleMarquee {
