@@ -2759,6 +2759,65 @@ input[type="range"] {
     }
 }
 
+/* =========================================
+   BETTER MOBILE ARCHITECTURE
+   ========================================= */
+
+.architecture {
+    margin-top: 22px;
+    padding: 18px 14px;
+    border-radius: 18px;
+}
+
+.architecture-header {
+    margin-bottom: 14px;
+    align-items: flex-start;
+}
+
+.architecture-header h2 {
+    font-size: 26px;
+    line-height: 1.15;
+    margin: 5px 0 0;
+}
+
+.architecture-header small {
+    font-size: 10px;
+}
+
+.architecture-header button {
+    font-size: 26px;
+    padding: 0 4px;
+}
+
+.ds-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.ds-card {
+    padding: 15px;
+    min-height: auto;
+}
+
+.ds-card h3 {
+    font-size: 17px;
+    margin: 7px 0;
+}
+
+.ds-card p {
+    font-size: 12px;
+    line-height: 1.5;
+    min-height: auto;
+    margin: 0;
+}
+
+.ds-card code {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 10px;
+    padding: 7px 9px;
+}
+
 
 /* Small phones */
 
