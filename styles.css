@@ -2668,51 +2668,72 @@ input[type="range"] {
    LONG SONG TITLE SCROLL
    ========================================================= */
 
-.current-song > div {
+   /* =========================================================
+   PROFESSIONAL PLAYER TITLE
+   ========================================================= */
+
+.current-song {
     min-width: 0;
-    width: 220px;
     overflow: hidden;
 }
 
-.current-song > div h4 {
-    display: block;
+/* =========================================
+   PROFESSIONAL SONG TITLE MARQUEE
+   ========================================= */
+
+.current-song {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.current-song > div {
+    min-width: 0;
+    width: 240px;
+    overflow: hidden;
+}
+
+.current-song h4 {
+    width: 100%;
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+.title-track {
+    display: inline-flex;
 
     width: max-content;
 
     white-space: nowrap;
 
-    overflow: visible;
-
-    animation: songTitleScroll 8s linear infinite;
+    gap: 40px;
 }
 
+.title-track span {
+    flex-shrink: 0;
+}
 
-@keyframes songTitleScroll {
+.current-song h4.scroll-title .title-track {
+    animation:
+        titleMarquee 8s linear infinite;
+}
+
+@keyframes titleMarquee {
 
     0%,
     15% {
         transform: translateX(0);
     }
 
-    75%,
-    90% {
-        transform: translateX(-45%);
-    }
-
+    85%,
     100% {
-        transform: translateX(0);
+        transform:
+            translateX(
+                calc(-50% - 20px)
+            );
     }
-}
-
-
-/* Keep artist fixed */
-
-.current-song > div p {
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
 }
 
 
@@ -2724,10 +2745,12 @@ input[type="range"] {
         width: 190px;
     }
 
-    .current-song > div h4 {
+    .current-song h4.scroll-title
+    .title-track {
         animation-duration: 7s;
     }
 }
+
 }
 
 

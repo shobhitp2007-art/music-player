@@ -2903,9 +2903,48 @@ function playSong(
     /*
         Update player UI.
     */
+    
+        playerTitle.innerHTML = `
+    <span class="title-track">
 
-    playerTitle.textContent =
-        song.title;
+        <span>
+            ${escapeHTML(song.title)}
+        </span>
+
+        <span aria-hidden="true">
+            ${escapeHTML(song.title)}
+        </span>
+
+    </span>
+`;
+
+playerTitle.classList.remove(
+    "scroll-title"
+);
+
+requestAnimationFrame(() => {
+
+    const track =
+        playerTitle.querySelector(
+            ".title-track"
+        );
+
+    const firstTitle =
+        track?.firstElementChild;
+
+    if (
+        firstTitle &&
+        firstTitle.scrollWidth >
+        playerTitle.clientWidth
+    ) {
+
+        playerTitle.classList.add(
+            "scroll-title"
+        );
+
+    }
+
+});
 
 
     playerArtist.textContent =
