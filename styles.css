@@ -2666,6 +2666,10 @@ input[type="range"] {
     height: 42px;
 }
 
+.current-song p {
+    display: none;
+}
+
     .volume {
         display: none;
     }
