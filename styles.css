@@ -2728,10 +2728,6 @@ input[type="range"] {
     flex-shrink: 0;
 }
 
-/* Center short titles */
-.current-song h4:not(.scroll-title) {
-    text-align: center;
-}
 
 /* Long titles scroll from the left */
 .current-song h4.scroll-title {
