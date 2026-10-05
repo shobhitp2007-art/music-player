@@ -2665,6 +2665,8 @@ input[type="range"] {
 
     /* Fix long song titles on mobile */
 
+    @media (max-width: 800px) {
+
     .current-song {
         min-width: 0;
         max-width: 100%;
@@ -2678,20 +2680,41 @@ input[type="range"] {
     }
 
     .current-song-info h4 {
-        width: 100%;
+        display: block;
+        width: max-content;
+        max-width: none;
 
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+
+        animation: songTitleScroll 10s linear infinite;
     }
 
     .current-song-info p {
-        width: 100%;
-
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
+}
+
+
+@keyframes songTitleScroll {
+
+    0%,
+    20% {
+        transform: translateX(0);
+    }
+
+    70%,
+    90% {
+        transform: translateX(
+            calc(-100% + 220px)
+        );
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
 }
 
 
