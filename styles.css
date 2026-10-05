@@ -2717,7 +2717,7 @@ input[type="range"] {
 
 .current-song h4.scroll-title .title-track {
     animation:
-        titleMarquee 8s linear infinite;
+        titleMarquee 13s linear infinite;
 }
 
 @keyframes titleMarquee {
@@ -2747,7 +2747,7 @@ input[type="range"] {
 
     .current-song h4.scroll-title
     .title-track {
-        animation-duration: 7s;
+        animation-duration: 13s;
     }
 }
 
