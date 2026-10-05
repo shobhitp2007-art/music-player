@@ -2662,5 +2662,49 @@ input[type="range"] {
     .volume {
         display: none;
     }
+
+    /* Fix long song titles on mobile */
+
+    .current-song {
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .current-song-info {
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .current-song-info h4 {
+        width: 100%;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .current-song-info p {
+        width: 100%;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
+
+
+@media (max-width: 550px) {
+
+    .current-song-info h4 {
+        max-width: 220px;
+    }
+
+    .current-song-info p {
+        max-width: 220px;
+    }
+}
+
+
 
