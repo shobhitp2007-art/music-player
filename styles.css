@@ -2726,12 +2726,19 @@ input[type="range"] {
     flex-shrink: 0;
 }
 
-/* CENTER SHORT SONG TITLES */
+/* Center short titles */
+.current-song h4:not(.scroll-title) {
+    text-align: center;
+}
 
-.current-song h4:not(.scroll-title) .title-track {
-    display: flex;
-    width: 100%;
-    justify-content: center;
+/* Long titles scroll from the left */
+.current-song h4.scroll-title {
+    text-align: left;
+}
+
+.current-song h4.scroll-title .title-track {
+    animation:
+        titleMarquee 13s linear infinite;
 }
 
 @keyframes titleMarquee {
