@@ -680,8 +680,7 @@ nav {
 
     height: 46px;
 
-    padding:
-        14px 45px;
+    padding: 0 18px 0 52px;
 
     border-radius: 14px;
 
@@ -732,18 +731,22 @@ nav {
 
 
 .search-icon {
-
     position: absolute;
 
-    left: 15px;
-
+    left: 18px;
     top: 50%;
 
-    transform:
-        translateY(-50%);
+    transform: translateY(-50%);
 
-    opacity: 0.7;
+    font-size: 17px;
 
+    color: var(--muted);
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    opacity: 0.8;
 }
 
 
