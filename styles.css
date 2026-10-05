@@ -2664,69 +2664,70 @@ input[type="range"] {
     }
 
     /* Fix long song titles on mobile */
+/* =========================================================
+   LONG SONG TITLE SCROLL
+   ========================================================= */
 
-    @media (max-width: 800px) {
+.current-song > div {
+    min-width: 0;
+    width: 220px;
+    overflow: hidden;
+}
 
-    .current-song {
-        min-width: 0;
-        max-width: 100%;
-        overflow: hidden;
-    }
+.current-song > div h4 {
+    display: block;
 
-    .current-song-info {
-        min-width: 0;
-        max-width: 100%;
-        overflow: hidden;
-    }
+    width: max-content;
 
-    .current-song-info h4 {
-        display: block;
-        width: max-content;
-        max-width: none;
+    white-space: nowrap;
 
-        white-space: nowrap;
+    overflow: visible;
 
-        animation: songTitleScroll 10s linear infinite;
-    }
-
-    .current-song-info p {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+    animation: songTitleScroll 8s linear infinite;
 }
 
 
 @keyframes songTitleScroll {
 
     0%,
-    20% {
+    15% {
         transform: translateX(0);
     }
 
-    70%,
+    75%,
     90% {
-        transform: translateX(
-            calc(-100% + 220px)
-        );
+        transform: translateX(-45%);
     }
 
     100% {
         transform: translateX(0);
     }
 }
+
+
+/* Keep artist fixed */
+
+.current-song > div p {
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
 
+/* Small phones */
+
 @media (max-width: 550px) {
 
-    .current-song-info h4 {
-        max-width: 220px;
+    .current-song > div {
+        width: 190px;
     }
 
-    .current-song-info p {
-        max-width: 220px;
+    .current-song > div h4 {
+        animation-duration: 7s;
     }
+}
 }
 
 
